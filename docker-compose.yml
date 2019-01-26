@@ -1,0 +1,42 @@
+version: "3"
+services:
+    nginx:
+        build:
+            context: ""
+            dockerfile: nginx/Dockerfile
+        ports:
+            - ${NGINX_PORT}:80
+        volumes:
+            - ./${SOURCE_DIR}:/usr/share/nginx/html
+        networks:
+            - Backend
+    php:
+        build:
+            context: ""
+            dockerfile: php/Dockerfile
+        ports:
+            - ${PHP_PORT}:9000
+        volumes:
+            - ./${SOURCE_DIR}:/usr/share/nginx/html
+        networks:
+            - Backend
+    redis:
+        build:
+            context: ""
+            dockerfile: redis/Dockerfile
+        networks:
+          - Backend
+    mysql:
+        build:
+            context: ""
+            dockerfile: mysql/Dockerfile
+        restart: always
+        environment:
+            - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}
+            - MYSQL_DATABASE=${MYSQL_DB_NAME}
+        ports:
+            - ${MYSQL_PORT}:3306
+        networks:
+            - Backend
+networks:
+    Backend:
