@@ -3,7 +3,7 @@ A basic docker web stack with NGINX, Php, Redis, and Mysql
 
 **Basic Usage**
 1. Clone into your local project directory.
-- If you want you can update the variables in the .env file.
+- If you want you can update the variables in the .env file. Be aware that this could break things.
 - **IMPORTANT** This is a local set up. Everything except MYSQL container can be deployed, but it is not a good idea to deploy MYSQL as a docker container. 
 
 2. Move any files that you want to serve into the "src" directory.
